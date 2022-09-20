@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .show {
+    @apply h-auto !max-h-[9999px] transition-all !ease-[cubic-bezier(1,0,1,0)] duration-200;
+  }
+  .rotateChevor {
+    @apply rotate-180 transition-all ease-in-out;
+  }
+}
