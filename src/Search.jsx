@@ -1,7 +1,7 @@
 import React from "react";
 import Dropdown from "./Dropdown";
 
-const Search = ({ region, setRegion, calcMode }) => {
+const Search = ({ region, setRegion, calcMode, searchText, setSearchText }) => {
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
@@ -14,7 +14,9 @@ const Search = ({ region, setRegion, calcMode }) => {
             "bg-darkBlue text-white",
             "bg-white text-veryDarkBlue"
           )}`}
+          onChange={() => setSearchText(event.target.value)}
           placeholder="Search for a country..."
+          value={searchText}
         />
         <i
           className={`fa-solid fa-magnifying-glass absolute top-0 bottom-0 my-auto left-6 w-4 h-4 ${calcMode(
@@ -25,7 +27,7 @@ const Search = ({ region, setRegion, calcMode }) => {
       </div>
       <Dropdown
         startingText="Filter by region"
-        options={["Africa", "America", "Asia", "Europe", "Oceania"]}
+        options={["All", "Africa", "America", "Asia", "Europe", "Oceania"]}
         calcMode={calcMode}
         region={region}
         setRegion={setRegion}

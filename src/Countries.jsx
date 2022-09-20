@@ -1,20 +1,41 @@
 import React from "react";
 import Country from "./Country";
 
-const Countries = ({ calcMode, countries }) => {
-  const countriesEls = countries.map((country, i) => {
-    return (
-      <Country
-        key={i}
-        name={country.name.common}
-        flag={country.flags.svg}
-        population={country.population}
-        region={country.continents[0]}
-        capitals={country.capital}
-        calcMode={calcMode}
-      />
-    );
-  });
+const Countries = ({ calcMode, countries, region, searchText }) => {
+  const countriesEls = countries
+    .filter(
+      (country) =>
+        country.region === region ||
+        region === "Filter by region" ||
+        region === "All"
+    )
+    .filter((country) => {
+      return (
+        country.name.common.slice(0, searchText.length) === searchText ||
+        country.name.official.slice(0, searchText.length) === searchText ||
+        country.name.common.toLowerCase().slice(0, searchText.length) ===
+          searchText ||
+        country.name.official.toLowerCase().slice(0, searchText.length) ===
+          searchText ||
+        country.name.common.toUpperCase().slice(0, searchText.length) ===
+          searchText ||
+        country.name.official.toUpperCase().slice(0, searchText.length) ===
+          searchText
+      );
+    })
+    .map((country, i) => {
+      return (
+        <Country
+          key={i}
+          name={country.name.common}
+          flag={country.flags.svg}
+          population={country.population}
+          region={country.continents[0]}
+          capitals={country.capital}
+          calcMode={calcMode}
+        />
+      );
+    });
 
   return (
     <div

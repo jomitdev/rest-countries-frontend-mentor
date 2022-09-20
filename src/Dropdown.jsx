@@ -11,6 +11,7 @@ const Dropdown = ({ region, setRegion, options, calcMode }) => {
   const chooseRegion = () => {
     setOpened(false);
     setRegion(event.target.name);
+    document.querySelector(".fa-chevron-down").classList.toggle("rotate-180");
   };
   return (
     <div>

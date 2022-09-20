@@ -8,6 +8,7 @@ function App() {
   const [darkMode, setDarkMode] = useState(true);
   const [region, setRegion] = useState("Filter by region");
   const [countries, setCountries] = useState([]);
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     axios
@@ -33,9 +34,20 @@ function App() {
     >
       <Navbar calcMode={calcMode} changeMode={changeMode} />
       <div className="px-4 sm:px-8 md:px-16 lg:px-20 py-8">
-        <Search calcMode={calcMode} region={region} setRegion={setRegion} />
+        <Search
+          searchText={searchText}
+          setSearchText={setSearchText}
+          calcMode={calcMode}
+          region={region}
+          setRegion={setRegion}
+        />
       </div>
-      <Countries calcMode={calcMode} countries={countries} />
+      <Countries
+        searchText={searchText}
+        region={region}
+        calcMode={calcMode}
+        countries={countries}
+      />
     </div>
   );
 }
