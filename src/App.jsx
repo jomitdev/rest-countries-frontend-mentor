@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import Home from "./Home";
 import Navbar from "./Navbar";
-import Search from "./Search";
+import CountryOverview from "./CountryOverview";
 import axios from "axios";
-import Countries from "./Countries";
 
 function App() {
+  window.addEventListener("resize", () => console.log(window.innerWidth));
   const [darkMode, setDarkMode] = useState(true);
-  const [region, setRegion] = useState("Filter by region");
   const [countries, setCountries] = useState([]);
-  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     axios
@@ -24,30 +24,26 @@ function App() {
   const changeMode = () => {
     setDarkMode((prevMode) => !prevMode);
   };
-
   return (
     <div
-      className={`h-screen w-screen font-nunito ${calcMode(
+      className={`h-screen ${calcMode(
         "bg-veryDarkBlueBg",
         "bg-veryLightGray"
       )}`}
     >
       <Navbar calcMode={calcMode} changeMode={changeMode} />
-      <div className="px-4 sm:px-8 md:px-16 lg:px-20 py-8">
-        <Search
-          searchText={searchText}
-          setSearchText={setSearchText}
-          calcMode={calcMode}
-          region={region}
-          setRegion={setRegion}
-        />
-      </div>
-      <Countries
-        searchText={searchText}
-        region={region}
-        calcMode={calcMode}
-        countries={countries}
-      />
+      <Routes>
+        <Route
+          path="/"
+          element={<Home calcMode={calcMode} countries={countries} />}
+        ></Route>
+        <Route
+          path="/:name"
+          element={
+            <CountryOverview countries={countries} calcMode={calcMode} />
+          }
+        ></Route>
+      </Routes>
     </div>
   );
 }

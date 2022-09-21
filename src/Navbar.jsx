@@ -11,7 +11,7 @@ const Navbar = ({ calcMode, changeMode }) => {
       <h1 className="text-lg sm:text-xl md:text-2xl font-extrabold">
         Where in the world?
       </h1>
-      <button className="text-lg sm:text-xl font-semibold" onClick={changeMode}>
+      <button className="text-lg sm:text-xl" onClick={changeMode}>
         <i
           className={`${calcMode(
             "fa-solid fa-moon",

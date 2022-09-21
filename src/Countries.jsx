@@ -3,12 +3,14 @@ import Country from "./Country";
 
 const Countries = ({ calcMode, countries, region, searchText }) => {
   const countriesEls = countries
-    .filter(
-      (country) =>
+    .filter((country) => {
+      return (
+        (region === "America" && country.region === "Americas") ||
         country.region === region ||
         region === "Filter by region" ||
         region === "All"
-    )
+      );
+    })
     .filter((country) => {
       return (
         country.name.common.slice(0, searchText.length) === searchText ||
