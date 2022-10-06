@@ -2,6 +2,9 @@ import React from "react";
 import Dropdown from "./Dropdown";
 
 const Search = ({ region, setRegion, calcMode, searchText, setSearchText }) => {
+  const resetText = () => {
+    setSearchText("");
+  };
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
@@ -24,6 +27,13 @@ const Search = ({ region, setRegion, calcMode, searchText, setSearchText }) => {
             "text-darkGray"
           )}`}
         ></i>
+        <button
+          className={`fa-solid fa-rotate-right absolute top-0 bottom-0 my-auto right-6 w-4 h-4 ${calcMode(
+            "text-white",
+            "text-darkGray"
+          )}`}
+          onClick={resetText}
+        ></button>
       </div>
       <Dropdown
         startingText="Filter by region"

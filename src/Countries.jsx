@@ -40,14 +40,20 @@ const Countries = ({ calcMode, countries, region, searchText }) => {
     });
 
   return (
-    <div
+    <article
       className={`px-4 sm:px-8 md:px-16 lg:px-20 py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 sm:gap-24 ${calcMode(
         "bg-veryDarkBlueBg",
         "bg-veryLightGray"
       )}`}
     >
-      {countriesEls}
-    </div>
+      {countriesEls.length > 0 ? (
+        countriesEls
+      ) : (
+        <p className={`${calcMode("text-white", "text-veryDarkBlue")} text-xl`}>
+          No Countries Found
+        </p>
+      )}
+    </article>
   );
 };
 

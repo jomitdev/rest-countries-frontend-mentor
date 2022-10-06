@@ -10,13 +10,13 @@ const CountryOverview = ({ countries, calcMode }) => {
   console.log(country);
 
   return (
-    <div
+    <article
       className={`px-4 sm:px-8 md:px-16 lg:px-20 ${calcMode(
         "bg-veryDarkBlueBg",
         "bg-veryLightGray"
       )}`}
     >
-      <div className="w-48 text-center py-12 lg:py-24">
+      <article className="w-48 text-center py-12 lg:py-24">
         <Link to="/">
           <div
             className={`shadow-md rounded-md py-4 ${calcMode(
@@ -28,13 +28,13 @@ const CountryOverview = ({ countries, calcMode }) => {
             Back
           </div>
         </Link>
-      </div>
+      </article>
 
-      <div className="lg:grid lg:grid-cols-2 w-full space-y-8">
+      <article className="lg:grid lg:grid-cols-2 w-full space-y-8">
         <img
           src={country.flags.svg}
           className="shadow-xl mx-auto md:m-0 md:w-4/5"
-          alt=""
+          alt={`${country.name.common} flag`}
         />
         <div
           className={`grid grid-cols-2 ${calcMode(
@@ -45,52 +45,52 @@ const CountryOverview = ({ countries, calcMode }) => {
           <h2 className="col-span-2 text-3xl font-extrabold mb-4">
             {country.name.common}
           </h2>
-          <div className="space-y-3 col-span-2 md:col-span-1 mb-12">
-            <p>
+          <ul className="space-y-3 col-span-2 md:col-span-1 mb-12">
+            <li>
               <span className="mr-1 font-semibold">Native Name:</span>
               {Object.values(country.name.nativeName)[0].common}
-            </p>
-            <p>
+            </li>
+            <li>
               <span className="mr-1 font-semibold">Population:</span>
               {country.population}
-            </p>
-            <p>
+            </li>
+            <li>
               <span className="mr-1 font-semibold">Region:</span>
               {country.region}
-            </p>
-            <p>
+            </li>
+            <li>
               <span className="mr-1 font-semibold">Sub Region:</span>
               {country.subregion}
-            </p>
-            <p>
+            </li>
+            <li>
               <span className="mr-1 font-semibold">Capital:</span>
               {country.capital.map((capital, i) =>
                 country.capital.length - 1 === i ? capital : capital + ", "
               )}
-            </p>
-          </div>
-          <div className="space-y-3 mb-4">
-            <p>
+            </li>
+          </ul>
+          <ul className="space-y-3 mb-4">
+            <li>
               <span className="mr-1 font-semibold">Top Level Domain:</span>
               {country.tld}
-            </p>
-            <p>
+            </li>
+            <li>
               <span className="mr-1 font-semibold">Currencies:</span>
               {Object.keys(country.currencies).map((currency, i) =>
                 Object.keys(country.currencies).length - 1 === i
                   ? currency
                   : currency + ", "
               )}
-            </p>
-            <p>
+            </li>
+            <li>
               <span className="mr-1 font-semibold">Languages:</span>
               {Object.values(country.languages).map((language, i) =>
                 Object.values(country.languages).length - 1 === i
                   ? language
                   : language + ", "
               )}
-            </p>
-          </div>
+            </li>
+          </ul>
           <div className="flex col-span-2 items-center flex-col md:flex-row">
             <p className="mr-1 font-semibold text-center md:text-left mb-3 md:mb-0">
               Border Countries:
@@ -117,8 +117,8 @@ const CountryOverview = ({ countries, calcMode }) => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </article>
+    </article>
   );
 };
 

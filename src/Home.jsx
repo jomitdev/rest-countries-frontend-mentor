@@ -13,7 +13,7 @@ function Home({ calcMode, countries }) {
         "bg-veryLightGray"
       )}`}
     >
-      <div className="px-4 sm:px-8 md:px-16 lg:px-20 py-8">
+      <article className="px-4 sm:px-8 md:px-16 lg:px-20 py-8">
         <Search
           searchText={searchText}
           setSearchText={setSearchText}
@@ -21,7 +21,7 @@ function Home({ calcMode, countries }) {
           region={region}
           setRegion={setRegion}
         />
-      </div>
+      </article>
       <Countries
         searchText={searchText}
         region={region}

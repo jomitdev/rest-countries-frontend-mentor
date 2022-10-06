@@ -18,6 +18,12 @@ function App() {
   }, []);
 
   const calcMode = (dark, light) => {
+    return darkMode
+      ? dark + " transition-colors duration-300"
+      : light + " transition-colors duration-300";
+  };
+
+  const calcModeNoTransition = (dark, light) => {
     return darkMode ? dark : light;
   };
 
@@ -31,19 +37,25 @@ function App() {
         "bg-veryLightGray"
       )}`}
     >
-      <Navbar calcMode={calcMode} changeMode={changeMode} />
-      <Routes>
-        <Route
-          path="/"
-          element={<Home calcMode={calcMode} countries={countries} />}
-        ></Route>
-        <Route
-          path="/:name"
-          element={
-            <CountryOverview countries={countries} calcMode={calcMode} />
-          }
-        ></Route>
-      </Routes>
+      <Navbar
+        calcMode={calcMode}
+        changeMode={changeMode}
+        calcModeNoTransition={calcModeNoTransition}
+      />
+      <main>
+        <Routes>
+          <Route
+            path="/"
+            element={<Home calcMode={calcMode} countries={countries} />}
+          ></Route>
+          <Route
+            path="/:name"
+            element={
+              <CountryOverview countries={countries} calcMode={calcMode} />
+            }
+          ></Route>
+        </Routes>
+      </main>
     </div>
   );
 }

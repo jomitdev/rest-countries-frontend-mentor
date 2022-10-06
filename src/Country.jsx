@@ -11,7 +11,11 @@ const Country = ({ name, flag, population, region, capitals, calcMode }) => {
           "bg-white text-veryDarkBlueBg"
         )} shadow-md rounded-lg overflow-hidden w-72 sm:w-auto mx-auto sm:mx-0`}
       >
-        <img src={flag} className="h-48 w-full object-cover" alt="" />
+        <img
+          src={flag}
+          className="h-48 w-full object-cover"
+          alt={`${name} flag`}
+        />
         <div className="pt-6 pb-8 px-6 text-lg">
           <h2 className="text-xl font-extrabold mb-4">{name}</h2>
           <p>

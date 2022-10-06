@@ -1,8 +1,12 @@
 import React from "react";
 
-const Navbar = ({ calcMode, changeMode }) => {
+const Navbar = ({
+  calcMode,
+  changeMode,
+  calcModeNoTransition = { calcModeNoTransition },
+}) => {
   return (
-    <div
+    <header
       className={`flex justify-between px-4 sm:px-8 md:px-16 lg:px-20 py-8 ${calcMode(
         "bg-darkBlue text-white",
         "bg-white shadow-md text-veryDarkBlue"
@@ -18,9 +22,9 @@ const Navbar = ({ calcMode, changeMode }) => {
             "fa-regular fa-moon"
           )} pr-2`}
         ></i>
-        {calcMode("Dark", "Light")} Mode
+        {calcModeNoTransition("Dark", "Light")} Mode
       </button>
-    </div>
+    </header>
   );
 };
 
