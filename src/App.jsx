@@ -6,7 +6,6 @@ import CountryOverview from "./CountryOverview";
 import axios from "axios";
 
 function App() {
-  window.addEventListener("resize", () => console.log(window.innerWidth));
   const [darkMode, setDarkMode] = useState(true);
   const [countries, setCountries] = useState([]);
 

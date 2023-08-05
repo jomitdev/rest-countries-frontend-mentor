@@ -7,7 +7,6 @@ const CountryOverview = ({ countries, calcMode }) => {
   const country = countries.find(
     (country) => country.name.common === name.replaceAll("-", " ")
   );
-  console.log(country);
 
   return (
     <article
@@ -48,7 +47,9 @@ const CountryOverview = ({ countries, calcMode }) => {
           <ul className="space-y-3 col-span-2 md:col-span-1 mb-12">
             <li>
               <span className="mr-1 font-semibold">Native Name:</span>
-              {Object.values(country.name.nativeName)[0].common}
+              {country.name.nativeName
+                ? Object.values(country.name.nativeName)[0].common
+                : "None"}
             </li>
             <li>
               <span className="mr-1 font-semibold">Population:</span>
@@ -60,13 +61,15 @@ const CountryOverview = ({ countries, calcMode }) => {
             </li>
             <li>
               <span className="mr-1 font-semibold">Sub Region:</span>
-              {country.subregion}
+              {country.subregion ? country.subregion : "None"}
             </li>
             <li>
               <span className="mr-1 font-semibold">Capital:</span>
-              {country.capital.map((capital, i) =>
-                country.capital.length - 1 === i ? capital : capital + ", "
-              )}
+              {country.capital
+                ? country.capital.map((capital, i) =>
+                    country.capital.length - 1 === i ? capital : capital + ", "
+                  )
+                : "None"}
             </li>
           </ul>
           <ul className="space-y-3 mb-4">
@@ -76,19 +79,23 @@ const CountryOverview = ({ countries, calcMode }) => {
             </li>
             <li>
               <span className="mr-1 font-semibold">Currencies:</span>
-              {Object.keys(country.currencies).map((currency, i) =>
-                Object.keys(country.currencies).length - 1 === i
-                  ? currency
-                  : currency + ", "
-              )}
+              {country.currencies
+                ? Object.keys(country.currencies).map((currency, i) =>
+                    Object.keys(country.currencies).length - 1 === i
+                      ? currency
+                      : currency + ", "
+                  )
+                : "None"}
             </li>
             <li>
               <span className="mr-1 font-semibold">Languages:</span>
-              {Object.values(country.languages).map((language, i) =>
-                Object.values(country.languages).length - 1 === i
-                  ? language
-                  : language + ", "
-              )}
+              {country.languages
+                ? Object.values(country.languages).map((language, i) =>
+                    Object.values(country.languages).length - 1 === i
+                      ? language
+                      : language + ", "
+                  )
+                : "None"}
             </li>
           </ul>
           <div className="flex col-span-2 items-center flex-col md:flex-row">
@@ -96,24 +103,24 @@ const CountryOverview = ({ countries, calcMode }) => {
               Border Countries:
             </p>
             <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-              {country.borders &&
-                country.borders.map((border) => {
-                  console.log(border);
-                  return (
-                    <div
-                      key={border}
-                      className={`${calcMode(
-                        "bg-darkBlue",
-                        "bg-white"
-                      )} shadow-md px-4 py-1 rounded-md flex items-center justify-center`}
-                    >
-                      {
-                        countries.find((country) => country.cca3 === border)
-                          .name.common
-                      }
-                    </div>
-                  );
-                })}
+              {country.borders
+                ? country.borders.map((border) => {
+                    return (
+                      <div
+                        key={border}
+                        className={`${calcMode(
+                          "bg-darkBlue",
+                          "bg-white"
+                        )} shadow-md px-4 py-1 rounded-md flex items-center justify-center`}
+                      >
+                        {
+                          countries.find((country) => country.cca3 === border)
+                            .name.common
+                        }
+                      </div>
+                    );
+                  })
+                : "None"}
             </div>
           </div>
         </div>
